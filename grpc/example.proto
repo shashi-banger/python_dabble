@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+/* RecorderParams encapsulate the parameters required for starting a recording
+   service */
+message RecorderParams {
+    string event_id = 1;
+    string ingest_name = 2; // Unique name give to the input stream e.g. "img_main"
+    string udp_url = 3; // UDP url where the live stream is expected
+    bool   primary = 4; // true only for on udp input false for others
+    repeated TrackDesc tracks = 5;
+}
+
+
+message TrackDesc {
+    oneof v {
+        int32 id =1; //using oneof to ensure valid value of 0 is serialized
+    }
+    int32 pid = 2;
+    string type = 3; // video | audio | scte | dvb_sub
+    string codec = 4; // h264 | mpeg2video | aac | mp2 ..
+    string tag = 5;   // Unique name give to the elementary stream. The same name
+                      // will be referred to in muxer params
+    string resolution = 6; // 1920x1080, 720x576
+    float  frame_rate = 7; // 25, 29.97 ..
+    int32  sampling_rate = 8; // 48000
+}
+
+message RecorderResponse {
+    string message = 1; 
+}
+
+service Recorder {
+    /* StartRecord starte recording the input UDP stream to ESDB */
+    rpc StartRecorder (RecorderParams) returns (RecorderResponse) {}
+}
+
+
