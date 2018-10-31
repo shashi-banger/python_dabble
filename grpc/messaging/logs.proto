@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+enum LogId
+{
+    UNKNOWN     = 0;        //no message corresponding to this value
+    VIDEO_START = 100;      //%%#message:: VideoStart,VIDEO_START
+    VIDEO_END   = 101;      //%%#message:: VideoEnd,VIDEO_END
+}
+
+
+message LogHdr {
+    LogId    log_id = 1;
+}
+
+message VideoStart
+{
+    LogId       log_id = 1;
+    string      s_pl_cookie = 3;
+    uint32      u_segment_id = 4;
+    uint32      u_duration_ms = 5;
+}
+
+message VideoEnd
+{
+    LogId       log_id = 1;
+    string      s_pl_cookie = 3;
+    uint32      u_segment_id = 4;
+    uint32      u_played_dur = 5;
+}
+
+
