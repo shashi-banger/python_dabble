@@ -1,0 +1,108 @@
+syntax = "proto3";
+package validate;
+
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.FieldOptions {
+    FieldRules  rules = 51021;
+}
+
+message FieldRules {
+    oneof type {
+        Int64Rules   int64=1;
+        StringRules  string = 2;
+    }
+}
+
+// Int64Rules describes the constraints applied to `int64` values
+message Int64Rules {
+    // Const specifies that this field must be exactly the specified value
+    int64 const = 1;
+
+    // Lt specifies that this field must be less than the specified value,
+    // exclusive
+    int64 lt = 2;
+
+    // Lte specifies that this field must be less than or equal to the
+    // specified value, inclusive
+    int64 lte = 3;
+
+    // Gt specifies that this field must be greater than the specified value,
+    // exclusive. If the value of Gt is larger than a specified Lt or Lte, the
+    // range is reversed.
+    int64 gt = 4;
+
+    // Gte specifies that this field must be greater than or equal to the
+    // specified value, inclusive. If the value of Gte is larger than a
+    // specified Lt or Lte, the range is reversed.
+    int64 gte = 5;
+
+    // In specifies that this field must be equal to one of the specified
+    // values
+    repeated int64 in = 6;
+
+    // NotIn specifies that this field cannot be equal to one of the specified
+    // values
+    repeated int64 not_in = 7;
+}
+
+
+// StringRules describe the constraints applied to `string` values
+message StringRules {
+    // Const specifies that this field must be exactly the specified value
+    string const = 1;
+
+    // Len specifies that this field must be the specified number of
+    // characters (Unicode code points). Note that the number of
+    // characters may differ from the number of bytes in the string.
+    uint64 len = 19;
+
+    // MinLen specifies that this field must be the specified number of
+    // characters (Unicode code points) at a minimum. Note that the number of
+    // characters may differ from the number of bytes in the string.
+    uint64 min_len = 2;
+
+    // MaxLen specifies that this field must be the specified number of
+    // characters (Unicode code points) at a maximum. Note that the number of
+    // characters may differ from the number of bytes in the string.
+    uint64 max_len = 3;
+
+    // LenBytes specifies that this field must be the specified number of bytes
+    // at a minimum
+    uint64 len_bytes = 20;
+
+    // MinBytes specifies that this field must be the specified number of bytes
+    // at a minimum
+    uint64 min_bytes = 4;
+
+    // MaxBytes specifies that this field must be the specified number of bytes
+    // at a maximum
+    uint64 max_bytes = 5;
+
+    // Pattern specifes that this field must match against the specified
+    // regular expression (RE2 syntax). The included expression should elide
+    // any delimiters.
+    string pattern  = 6;
+
+    // Prefix specifies that this field must have the specified substring at
+    // the beginning of the string.
+    string prefix   = 7;
+
+    // Suffix specifies that this field must have the specified substring at
+    // the end of the string.
+    string suffix   = 8;
+
+    // Contains specifies that this field must have the specified substring
+    // anywhere in the string.
+    string contains = 9;
+
+    // In specifies that this field must be equal to one of the specified
+    // values
+    repeated string in     = 10;
+
+    // NotIn specifies that this field cannot be equal to one of the specified
+    // values
+    repeated string not_in = 11;
+}
+
+
