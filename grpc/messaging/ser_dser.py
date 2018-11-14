@@ -2,7 +2,7 @@ import logs_pb2
 import sys
 from google.protobuf import json_format as json_format
 
-log_video_start = logs_pb2.VideoStart(log_id=logs_pb2.VIDEO_START, s_pl_cookie="abc:1", u_segment_id=1, u_duration_ms=100)
+log_video_start = logs_pb2.VideoStart(log_id=logs_pb2.VIDEO_START, s_pl_cookie=1, u_segment_id=1, u_duration_ms=100)
 
 log_video_end = logs_pb2.VideoEnd(log_id=logs_pb2.VIDEO_END, s_pl_cookie="abc:1", u_segment_id=1, u_played_dur=80)
 
