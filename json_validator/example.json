@@ -1,0 +1,15 @@
+{
+    "name":"ingest_name",
+    "inp_port":1234,
+    "primary":true,
+    "tracks":[
+               {
+                   "id":1,
+                   "type":"video",
+                   "tag":"string",
+                   "codec":"h264",
+                   "frameRate":25.0,
+                   "samplingRate":48000
+               }
+             ]
+}

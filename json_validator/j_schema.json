@@ -1,0 +1,131 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "name",
+    "inp_port",
+    "primary",
+    "tracks"
+  ],
+  "properties": {
+    "name": {
+      "$id": "#/properties/name",
+      "type": "string",
+      "title": "The Name Schema",
+      "default": "",
+      "examples": [
+        "ingest_name"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "inp_port": {
+      "$id": "#/properties/inp_port",
+      "type": "integer",
+      "title": "The Inp_port Schema",
+      "default": 0,
+      "examples": [
+        1234
+      ]
+    },
+    "primary": {
+      "$id": "#/properties/primary",
+      "type": "boolean",
+      "title": "The Primary Schema",
+      "default": false,
+      "examples": [
+        true
+      ]
+    },
+    "tracks": {
+      "$id": "#/properties/tracks",
+      "type": "array",
+      "title": "The Tracks Schema",
+      "items": {
+        "$id": "#/properties/tracks/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "id",
+          "type",
+          "tag",
+          "codec",
+          "frameRate",
+          "samplingRate"
+        ],
+        "properties": {
+          "id": {
+            "$id": "#/properties/tracks/items/properties/id",
+            "type": "integer",
+            "title": "The Id Schema",
+            "default": 0,
+            "examples": [
+              1
+            ]
+          },
+          "type": {
+            "$id": "#/properties/tracks/items/properties/type",
+            "type": "string",
+            "title": "The Type Schema",
+            "default": "",
+            "examples": [
+              "video"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "tag": {
+            "$id": "#/properties/tracks/items/properties/tag",
+            "type": "string",
+            "title": "The Tag Schema",
+            "default": "",
+            "examples": [
+              "string"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "codec": {
+            "$id": "#/properties/tracks/items/properties/codec",
+            "type": "string",
+            "title": "The Codec Schema",
+            "default": "",
+            "enum": ["h264", "mp2", "aac"],
+            "examples": [
+              "h264"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "resolution": {
+            "$id": "#/properties/tracks/items/properties/resolution",
+            "type": "string",
+            "title": "The Resolution Schema",
+            "default": "",
+            "examples": [
+              "1920x1080"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "frameRate": {
+            "$id": "#/properties/tracks/items/properties/frameRate",
+            "type": "number",
+            "title": "The Framerate Schema",
+            "default": 0.0,
+            "examples": [
+              25.0
+            ]
+          },
+          "samplingRate": {
+            "$id": "#/properties/tracks/items/properties/samplingRate",
+            "type": "integer",
+            "title": "The Samplingrate Schema",
+            "default": 0,
+            "examples": [
+              48000
+            ]
+          }
+        }
+      }
+    }
+  }
+}
